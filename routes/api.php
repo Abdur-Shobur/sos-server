@@ -43,10 +43,10 @@ Route::post('admin/login', [AuthController::class, 'Login']);
 
 
 
-// Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
-//   Route::get('/checkingAuthenticatedVendor', function () {
-//       return response()->json(['message'=>'You are in', 'status'=>200], 200);
-// });
+Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
+  Route::get('/checkingAuthenticatedVendor', function () {
+      return response()->json(['message'=>'You are in', 'status'=>200], 200);
+});
 
      Route::get('vendor/profile',[VendorController::class,'VendorProfile']);
      Route::post('vendor/update/profile',[VendorController::class,'VendorUpdateProfile']);
@@ -62,17 +62,17 @@ Route::post('admin/login', [AuthController::class, 'Login']);
 
 
 
-// });
+});
 
 
 
 
-// Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
+Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
 
-//     Route::get('/checkingAuthenticated', function () {
-//         return response()->json(['message'=>'You are in', 'status'=>200], 200);
+    Route::get('/checkingAuthenticated', function () {
+        return response()->json(['message'=>'You are in', 'status'=>200], 200);
 
-//   });
+  });
   Route::get('admin/profile',[AdminController::class,'AdminProfile']);
   Route::post('admin/update/profile',[AdminController::class,'AdminUpdateProfile']);
 
@@ -127,7 +127,7 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
     Route::post('update-affiliator/{id}', [UserController::class, 'UpdateAffiliator']);
     Route::delete('delete-affiliator/{id}', [UserController::class, 'AffiliatorDelete']);
 
-// });
+});
 
 
 

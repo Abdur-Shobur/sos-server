@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -39,4 +40,40 @@ class AdminController extends Controller
          'message'=>'Admin Update Sucessfully',
         ]);
     }
+
+    public function AdminRequestPending()
+    {
+         $product=Product::where('request','0')->get();
+            return response()->json([
+            'status'=>200,
+            'product'=>$product,
+        ]);
+    }
+
+    public function AdminRequestActive()
+    {
+         $product=Product::where('request','1')->get();
+            return response()->json([
+            'status'=>200,
+            'product'=>$product,
+        ]);
+    }
+
+    public function AdminRequestBalances()
+    {
+        $user=User::where('balance_status',0)->get();
+        return response()->json($user);
+    }
+
+
+    public function AdminRequestBalanceActive()
+    {
+        $user=User::where('balance_status',1)->get();
+        return response()->json($user);
+    }
+
+
+
+
+
 }

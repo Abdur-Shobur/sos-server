@@ -34,7 +34,11 @@ return new class extends Migration
              $table->string('product_color')->nullable();
              $table->string('product_size')->nullable();
              $table->string('tags')->nullable();
+             $table->string('commision_type')->nullable();
+             $table->string('request')->nullable();
+             $table->string('user_type')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -30,11 +30,11 @@ class AuthController extends Controller
             'email'=>$request->email,
             'role_as'=>$role_as,
             'status'=>'pending',
-           
-            
+
+
             'password'=>Hash::make($request->password),
           ]);
-         
+
              $token = $user->createToken($user->email.'_Token')->plainTextToken;
 
            return response()->json([
@@ -102,5 +102,5 @@ class AuthController extends Controller
             'message'=>'Logged Out Successfully',
         ]);
     }
-  
+
 }

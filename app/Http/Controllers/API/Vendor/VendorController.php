@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Color;
+use App\Models\Size;
 use App\Models\User;
+use App\Models\Subcategory;
 class VendorController extends Controller
 {
      public function VendorProfile()
@@ -85,6 +89,8 @@ class VendorController extends Controller
          $product->subcategory_id=$request->input('subcategory_id');
          $product->brand_id=$request->input('brand_id');
          $product->user_id=Auth::user()->id;
+         $product->color_id=json_encode($request->input('color_id'));
+         $product->size_id=json_encode($request->input('size_id'));
         //  $product->slug=$request->input('slug');
          $product->name=$request->input('name');
          $product->slug =Str::slug($request->name);
@@ -97,8 +103,6 @@ class VendorController extends Controller
          $product->meta_title=$request->input('meta_title');
          $product->meta_keyword=$request->input('meta_keyword');
          $product->meta_description=$request->input('meta_description');
-         $product->product_color=$request->input('product_color');
-         $product->product_size=$request->input('product_size');
          $product->tags=$request->input('tags');
 
          if($request->hasFile('image'))
@@ -108,6 +112,22 @@ class VendorController extends Controller
              $filename = time() .'.'.$extension;
              $file->move('uploads/product/', $filename);
              $product->image = 'uploads/product/'.$filename;
+         }
+
+         $productId=$product->id;
+         $images = $request->file('image');
+         foreach($images as $image)
+         {
+            // image01 upload
+             $name =  time().'-'.$image->getClientOriginalName();
+             $uploadpath = 'uploads/product/';
+             $image->move($uploadpath, $name);
+             $imageUrl = $uploadpath.$name;
+
+              $proimage= new ProductImage();
+              $proimage->product_id = $productId;
+              $proimage->image=$imageUrl;
+              $proimage->save();
          }
 
          $product->save();
@@ -121,7 +141,7 @@ class VendorController extends Controller
     public function VendorProductEdit($id)
     {
         $userId =Auth::id();
-        $product = Product::where('user_id',$userId)->find($id);
+        $product = Product::with('category','subcategory')->where('user_id',$userId)->find($id);
         if($product)
         {
           return response()->json([
@@ -204,6 +224,32 @@ class VendorController extends Controller
                     $product->image = 'uploads/product/'.$filename;
                 }
 
+                $productId=$product->id;
+                $update_images=ProductImage::where('product_id',$productId)->get();
+               $images = $request->file('image');
+               if($images){
+                    foreach($images as $image)
+                      {
+                         // image01 upload
+                      $name =  time().'-'.$image->getClientOriginalName();
+                      $uploadpath = 'public/backend/product/';
+                      $image->move($uploadpath, $name);
+                      $imageUrl = $uploadpath.$name;
+
+                      $proimage= new ProductImage();
+                       $proimage->product_id = $productId;
+                       $proimage->image=$imageUrl;
+                       $proimage->save();
+                      }
+                   }else{
+                    foreach($update_images as $update_image){
+                    $uimage=$update_image->image;
+                    $update_image->image  = $uimage;
+                     $update_image->save();
+                     }
+                   }
+
+
 
                 $product->update();
 
@@ -243,6 +289,10 @@ class VendorController extends Controller
         }
     }
 
+
+
+
+
     public function AllCategory()
     {
         $category=Category::with(['subcategory'])->get();
@@ -252,6 +302,16 @@ class VendorController extends Controller
         ]);
     }
 
+    public function AllSubCategory()
+    {
+        $subcategory=Subcategory::all();
+        return response()->json([
+            'status'=>200,
+            'subcategory'=>$subcategory,
+        ]);
+    }
+
+
     public function AllBrand()
     {
       $brand=Brand::all();
@@ -260,4 +320,69 @@ class VendorController extends Controller
           'brand'=>$brand,
       ]);
     }
+
+
+    public function AllColor()
+    {
+      $color=Color::all();
+      return response()->json([
+          'status'=>200,
+          'color'=>$color,
+      ]);
+    }
+
+    public function AllSize()
+    {
+      $size=Size::all();
+      return response()->json([
+          'status'=>200,
+          'size'=>$size,
+      ]);
+    }
+
+    public function VendorRequestPending()
+    {
+
+        $userId =Auth::id();
+         $product=Product::where('user_id',$userId)->where('request','0')->get();
+            return response()->json([
+            'status'=>200,
+            'product'=>$product,
+        ]);
+    }
+
+    public function VendorRequestActive()
+    {
+        $userId =Auth::id();
+         $product=Product::where('user_id',$userId)->where('request','1')->get();
+            return response()->json([
+            'status'=>200,
+            'product'=>$product,
+        ]);
+    }
+
+    public function VendorBalanceRequest()
+    {
+        $vendor=User::find(Auth::user()->id);
+        return response()->json([
+            'status'=>200,
+            'vendor'=>$vendor
+        ]);
+    }
+
+    public function VendorRequestSent(Request $request)
+    {
+
+        $data = User::find(Auth::user()->id);
+        $data->balance = $request->balance;
+        $data->message = $request->message;
+        $data->balance_status =0;
+        $data->update();
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Vendor Balance Added  Successfully Please Wait',
+        ]);
+    }
+
 }

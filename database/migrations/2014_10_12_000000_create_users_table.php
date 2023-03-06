@@ -22,9 +22,11 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('number')->nullable();
             $table->string('status')->nullable();
+            $table->string('balance')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

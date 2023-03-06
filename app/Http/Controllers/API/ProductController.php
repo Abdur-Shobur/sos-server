@@ -67,6 +67,8 @@ class ProductController extends Controller
             $product->product_color=$request->input('product_color');
             $product->product_size=$request->input('product_size');
             $product->tags=$request->input('tags');
+            $product->commision_type=$request->input('commision_type');
+
 
             if($request->hasFile('image'))
             {
@@ -147,11 +149,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $image_path = app_path("uploads/product/{$product->image}");
+        // $image_path = app_path("uploads/product/{$product->image}");
 
-        if (File::exists($image_path)) {
-            unlink($image_path);
-        }
+        // if (File::exists($image_path)) {
+        //     unlink($image_path);
+        // }
         if($product)
         {
             $product->delete();
@@ -214,6 +216,7 @@ class ProductController extends Controller
                 $product->product_color=$request->input('product_color');
                 $product->product_size=$request->input('product_size');
                 $product->tags=$request->input('tags');
+                $product->commision_type=$request->input('commision_type');
 
 
 

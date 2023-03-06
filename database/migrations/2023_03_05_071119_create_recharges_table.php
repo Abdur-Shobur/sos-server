@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subcategories', function (Blueprint $table) {
+        Schema::create('recharges', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->string('name')->nullable();
-            $table->string('slug')->nullable();
-            $table->string('status')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->decimal('amount',8,2)->default(0);
+            $table->string('payment_method')->nullable();
+            $table->string('trans_id')->nullable(); 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcategories');
+        Schema::dropIfExists('recharges');
     }
 };

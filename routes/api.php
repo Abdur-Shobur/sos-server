@@ -5,12 +5,16 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\BrandController;
+use App\Http\Controllers\API\ColorController;
+use App\Http\Controllers\API\SizeController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\VendorAuthController;
 use App\Http\Controllers\API\AffiliatorAuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\Vendor\VendorController;
+use App\Http\Controllers\API\Affiliate\AffiliateController;
+use App\Http\Controllers\API\Affiliate\CartController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +54,8 @@ Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
 
      Route::get('vendor/profile',[VendorController::class,'VendorProfile']);
      Route::post('vendor/update/profile',[VendorController::class,'VendorUpdateProfile']);
+
+     //vendor product
      Route::get('vendor/product',[VendorController::class,'VendorProduct']);
     Route::post('vendor-store-product',[VendorController::class,'VendorProductStore']);
     Route::get('vendor-edit-product/{id}',[VendorController::class,'VendorProductEdit']);
@@ -57,7 +63,16 @@ Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
     Route::delete('vendor-delete-product/{id}', [VendorController::class, 'VendorDelete']);
 
     Route::get('vendor-all-category', [VendorController::class, 'AllCategory']);
+    Route::get('vendor-all-subcategory', [VendorController::class, 'AllSubCategory']);
     Route::get('vendor-all/brand', [VendorController::class, 'AllBrand']);
+    Route::get('vendor-all-color', [VendorController::class, 'AllColor']);
+    Route::get('vendor-all-size', [VendorController::class, 'AllSize']);
+
+    Route::get('vendor/reuest/product/pending',[VendorController::class,'VendorRequestPending']);
+    Route::get('vendor/reuest/product/active',[VendorController::class,'VendorRequestActive']);
+
+    Route::get('vendor/balance/request',[VendorController::class,'VendorBalanceRequest']);
+    Route::post('vendor/request/sent',[VendorController::class,'VendorRequestSent']);
 
 
 
@@ -75,6 +90,10 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
   });
   Route::get('admin/profile',[AdminController::class,'AdminProfile']);
   Route::post('admin/update/profile',[AdminController::class,'AdminUpdateProfile']);
+  Route::get('admin/reuest/product/pending',[AdminController::class,'AdminRequestPending']);
+  Route::get('admin/reuest/product/active',[AdminController::class,'AdminRequestActive']);
+  Route::get('admin/reuest/balances',[AdminController::class,'AdminRequestBalances']);
+  Route::get('admin/reuest/balance/active',[AdminController::class,'AdminRequestBalanceActive']);
 
 
 
@@ -102,6 +121,21 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
    Route::get('edit-brand/{id}',[BrandController::class,'BrandEdit']);
    Route::put('update-brand/{id}', [BrandController::class, 'BrandUpdate']);
    Route::delete('delete-brand/{id}', [BrandController::class, 'destroy']);
+
+   //color route
+   Route::post('store-color',[ColorController::class,'Colortore']);
+   Route::get('view-color',[ColorController::class,'ColorIndex']);
+   Route::get('edit-color/{id}',[ColorController::class,'ColorEdit']);
+   Route::put('update-color/{id}', [ColorController::class, 'ColorUpdate']);
+   Route::delete('delete-color/{id}', [ColorController::class, 'destroy']);
+
+
+     //size route
+     Route::post('store-size',[SizeController::class,'Sizetore']);
+     Route::get('view-size',[SizeController::class,'SizeIndex']);
+     Route::get('edit-size/{id}',[SizeController::class,'SizeEdit']);
+     Route::put('update-size/{id}', [SizeController::class, 'SizeUpdate']);
+     Route::delete('delete-size/{id}', [SizeController::class, 'destroy']);
 
 
 
@@ -133,6 +167,17 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
 
 Route::middleware(['auth:sanctum'])->group(function(){
    Route::post('logout',[AuthController::class,'logout']);
+   Route::get('affiliator/products', [AffiliateController::class, 'AffiliatorProducts']);
+   Route::get('single/product/{id}', [AffiliateController::class, 'AffiliatorProductSingle']);
+   Route::post('request/product/{id}', [AffiliateController::class, 'AffiliatorProductRequest']);
+   Route::get('affiliator/request/pending/product', [AffiliateController::class, 'AffiliatorProductPendingProduct']);
+   Route::get('affiliator/request/active/product', [AffiliateController::class, 'AffiliatorProductActiveProduct']);
+   Route::post('add-to-cart', [CartController::class, 'addtocart']);
+   Route::get('cart', [CartController::class, 'viewcart']);
+   Route::put('cart-updatequantity/{cart_id}/{scope}', [CartController::class, 'updatequantity']);
+   Route::delete('delete-cartitem/{cart_id}', [CartController::class, 'deleteCartitem']);
+
+
   });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

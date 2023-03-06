@@ -25,7 +25,7 @@ class AffiliatorAuthController extends Controller
         else
         {
 
-              $role_as = '3';
+            $role_as = '3';
             $user=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -34,7 +34,7 @@ class AffiliatorAuthController extends Controller
             'status'=>'pending',
             'password'=>Hash::make($request->password),
           ]);
-         
+
              $token = $user->createToken($user->email.'_Token')->plainTextToken;
 
            return response()->json([

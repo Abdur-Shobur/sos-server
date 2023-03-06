@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('product_id');
             $table->integer('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -119,7 +119,7 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
    Route::post('store-brand',[BrandController::class,'BrandStore']);
    Route::get('view-brand',[BrandController::class,'BrandIndex']);
    Route::get('edit-brand/{id}',[BrandController::class,'BrandEdit']);
-   Route::put('update-brand/{id}', [BrandController::class, 'BrandUpdate']);
+   Route::post('update-brand/{id}', [BrandController::class, 'BrandUpdate']);
    Route::delete('delete-brand/{id}', [BrandController::class, 'destroy']);
 
    //color route

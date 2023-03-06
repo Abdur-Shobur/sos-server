@@ -89,8 +89,8 @@ class VendorController extends Controller
          $product->subcategory_id=$request->input('subcategory_id');
          $product->brand_id=$request->input('brand_id');
          $product->user_id=Auth::user()->id;
-         $product->color_id=json_encode($request->input('color_id'));
-         $product->size_id=json_encode($request->input('size_id'));
+        //  $product->color_id=json_encode($request->input('color_id'));
+        //  $product->size_id=json_encode($request->input('size_id'));
         //  $product->slug=$request->input('slug');
          $product->name=$request->input('name');
          $product->slug =Str::slug($request->name);
@@ -113,6 +113,7 @@ class VendorController extends Controller
              $file->move('uploads/product/', $filename);
              $product->image = 'uploads/product/'.$filename;
          }
+         $product->save();
 
          $productId=$product->id;
          $images = $request->file('image');
@@ -130,7 +131,7 @@ class VendorController extends Controller
               $proimage->save();
          }
 
-         $product->save();
+         
          return response()->json([
          'status'=>200,
           'message'=>'Product Added Sucessfully',

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->string('meta_title')->nullable();
-            $table->text('meta_keyword')->nullable();
+            $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('status')->nullable();
             $table->string('image')->nullable();

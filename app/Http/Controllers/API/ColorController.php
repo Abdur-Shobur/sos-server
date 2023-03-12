@@ -7,11 +7,14 @@ use App\Models\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 class ColorController extends Controller
 {
     public function ColorIndex()
     {
-        $color=Color::all();
+
+        $userId =Auth::id();
+        $color=Color::where('user_id',$userId)->get();
         return response()->json([
             'status'=>200,
             'color'=>$color,
@@ -37,7 +40,9 @@ class ColorController extends Controller
           {
             $color =new Color();
             $color->name=$request->input('name');
+            $color->code=$request->input('code');
             $color->slug =Str::slug($request->name);
+            $color->user_id=Auth::id();
             $color->status='pending';
             $color->save();
             return response()->json([
@@ -49,7 +54,8 @@ class ColorController extends Controller
 
     public function ColorEdit($id)
     {
-         $color = Color::find($id);
+        $userId =Auth::id();
+         $color = Color::where('user_id',$userId)->find($id);
         if($color)
         {
             return response()->json([
@@ -88,6 +94,8 @@ class ColorController extends Controller
                     $color->name = $request->input('name');
                     $color->slug =Str::slug($request->name);
                     $color->status = $request->input('status');
+                    $color->code=$request->input('code');
+                    $color->user_id=Auth::id();
                     $color->save();
                     return response()->json([
                         'status'=>200,
@@ -107,8 +115,8 @@ class ColorController extends Controller
 
     public function destroy($id)
     {
-
-        $color = Color::find($id);
+        $userId =Auth::id();
+        $color = Color::where('user_id',$userId)->find($id);
         if($color)
         {
             $color->delete();

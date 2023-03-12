@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -11,7 +12,8 @@ class SizeController extends Controller
 {
     public function SizeIndex()
     {
-        $size=Size::all();
+        $userId =Auth::id();
+        $size=Size::where('user_id',$userId)->get();
         return response()->json([
             'status'=>200,
             'size'=>$size,
@@ -38,6 +40,7 @@ class SizeController extends Controller
             $size =new Size();
             $size->name=$request->input('name');
             $size->slug =Str::slug($request->name);
+            $size->user_id=Auth::id();
             $size->status='pending';
             $size->save();
             return response()->json([
@@ -49,7 +52,8 @@ class SizeController extends Controller
 
     public function SizeEdit($id)
     {
-         $size = Size::find($id);
+        $userId =Auth::id();
+         $size = Size::where('user_id',$userId)->find($id);
         if($size)
         {
             return response()->json([
@@ -88,6 +92,7 @@ class SizeController extends Controller
                     $size->name = $request->input('name');
                     $size->slug =Str::slug($request->name);
                     $size->status = $request->input('status');
+                    $size->user_id=Auth::id();
                     $size->save();
                     return response()->json([
                         'status'=>200,
@@ -107,8 +112,8 @@ class SizeController extends Controller
 
     public function destroy($id)
     {
-
-        $size = Size::find($id);
+        $userId =Auth::id();
+        $size = Size::where('user_id',$userId)->find($id);
         if($size)
         {
             $size->delete();

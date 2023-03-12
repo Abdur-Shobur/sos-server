@@ -74,7 +74,19 @@ Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
     Route::get('vendor/balance/request',[VendorController::class,'VendorBalanceRequest']);
     Route::post('vendor/request/sent',[VendorController::class,'VendorRequestSent']);
 
-
+    Route::post('store-color',[ColorController::class,'Colortore']);
+    Route::get('view-color',[ColorController::class,'ColorIndex']);
+    Route::get('edit-color/{id}',[ColorController::class,'ColorEdit']);
+    Route::put('update-color/{id}', [ColorController::class, 'ColorUpdate']);
+    Route::delete('delete-color/{id}', [ColorController::class, 'destroy']);
+ 
+ 
+      //size route
+      Route::post('store-size',[SizeController::class,'Sizetore']);
+      Route::get('view-size',[SizeController::class,'SizeIndex']);
+      Route::get('edit-size/{id}',[SizeController::class,'SizeEdit']);
+      Route::put('update-size/{id}', [SizeController::class, 'SizeUpdate']);
+      Route::delete('delete-size/{id}', [SizeController::class, 'destroy']);
 
 
 });
@@ -123,19 +135,7 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
    Route::delete('delete-brand/{id}', [BrandController::class, 'destroy']);
 
    //color route
-   Route::post('store-color',[ColorController::class,'Colortore']);
-   Route::get('view-color',[ColorController::class,'ColorIndex']);
-   Route::get('edit-color/{id}',[ColorController::class,'ColorEdit']);
-   Route::put('update-color/{id}', [ColorController::class, 'ColorUpdate']);
-   Route::delete('delete-color/{id}', [ColorController::class, 'destroy']);
-
-
-     //size route
-     Route::post('store-size',[SizeController::class,'Sizetore']);
-     Route::get('view-size',[SizeController::class,'SizeIndex']);
-     Route::get('edit-size/{id}',[SizeController::class,'SizeEdit']);
-     Route::put('update-size/{id}', [SizeController::class, 'SizeUpdate']);
-     Route::delete('delete-size/{id}', [SizeController::class, 'destroy']);
+ 
 
 
 

@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('user_id')->nullable();
             $table->string('slug');
             $table->string('status')->nullable();
+            $table->string('code')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -82,7 +82,7 @@ Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
  
  
       //size route
-      Route::post('store-size',[SizeController::class,'Sizetore']);
+      Route::post('store-size',[SizeController::class,'Sizestore']);
       Route::get('view-size',[SizeController::class,'SizeIndex']);
       Route::get('edit-size/{id}',[SizeController::class,'SizeEdit']);
       Route::put('update-size/{id}', [SizeController::class, 'SizeUpdate']);

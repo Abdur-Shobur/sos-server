@@ -50,7 +50,7 @@ class ProductController extends Controller
             $product =new Product;
             $product->category_id=$request->input('category_id');
             $product->subcategory_id=$request->input('subcategory_id');
-            // $product->user_id=Auth::user()->id;;
+            $product->user_id=Auth::user()->id;;
             $product->brand_id=$request->input('brand_id');
             $product->user_id=$request->input('user_id');
             $product->name=$request->input('name');

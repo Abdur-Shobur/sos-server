@@ -33,6 +33,7 @@ class VendorController extends Controller
          $data->name = $request->name;
          $data->number = $request->number;
          $data->status = $request->status;
+         
          if($request->hasFile('image'))
          {
              $file = $request->file('image');

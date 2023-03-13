@@ -74,10 +74,11 @@ Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
     Route::get('vendor/balance/request',[VendorController::class,'VendorBalanceRequest']);
     Route::post('vendor/request/sent',[VendorController::class,'VendorRequestSent']);
 
+
     Route::post('store-color',[ColorController::class,'Colortore']);
     Route::get('view-color',[ColorController::class,'ColorIndex']);
     Route::get('edit-color/{id}',[ColorController::class,'ColorEdit']);
-    Route::put('update-color/{id}', [ColorController::class, 'ColorUpdate']);
+    Route::post('update-color/{id}', [ColorController::class, 'ColorUpdate']);
     Route::delete('delete-color/{id}', [ColorController::class, 'destroy']);
  
  

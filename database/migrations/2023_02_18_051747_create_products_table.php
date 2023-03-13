@@ -18,7 +18,7 @@ return new class extends Migration
              $table->integer('category_id');
              $table->integer('subcategory_id')->nullable();
              $table->integer('brand_id')->nullable();
-             $table->integer('user_id');
+            //  $table->integer('user_id');
              $table->string('slug');
              $table->string('name');
              $table->text('short_description')->nullable();
@@ -31,12 +31,14 @@ return new class extends Migration
              $table->string('meta_title')->nullable();
              $table->string('meta_keyword')->nullable();
              $table->string('meta_description')->nullable();
-             $table->string('product_color')->nullable();
-             $table->string('product_size')->nullable();
+            //  $table->string('product_color')->nullable();
+            //  $table->string('product_size')->nullable();
              $table->string('tags')->nullable();
-             $table->string('commision_type')->nullable();
-             $table->string('request')->nullable();
-             $table->string('user_type')->nullable();
+             $table->longText('specification')->nullable();
+             $table->longText('description')->nullable();
+            //  $table->string('commision_type')->nullable();
+            //  $table->string('request')->nullable();
+            //  $table->string('user_type')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

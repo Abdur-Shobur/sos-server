@@ -4,11 +4,46 @@ namespace App\Http\Controllers\API\Affiliate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AffiliateController extends Controller
 {
+
+    public function AffiliatorProfile()
+    {
+        $user=User::find(Auth::user()->id);
+        return response()->json([
+            'status'=>200,
+            'user'=>$user
+        ]);
+    }
+
+    public function AffiliatorUpdateProfile(Request $request)
+    {
+        $data = User::find(Auth::user()->id);
+        $data->name = $request->name;
+        $data->number = $request->number;
+        $data->status = $request->status;
+
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() .'.'.$extension;
+            $file->move('uploads/vendor/', $filename);
+            $data->image = 'uploads/vendor/'.$filename;
+        }
+
+        $data->save();
+        return response()->json([
+        'status'=>200,
+         'message'=>'Affiliator Update Sucessfully',
+        ]);
+    }
+
+
 
 
         public function AffiliatorProducts()

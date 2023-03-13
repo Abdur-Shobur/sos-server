@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Size extends Model
 {
     use HasFactory;
+
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Product')->withTimestamps();
+    }
 }

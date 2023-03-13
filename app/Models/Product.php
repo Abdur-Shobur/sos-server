@@ -24,5 +24,21 @@ class Product extends Model
 
 
 
+      public function colors()
+      {
+          return $this->belongsToMany('App\Models\Color')->withTimestamps();
+      }
+      public function sizes()
+      {
+          return $this->belongsToMany('App\Models\Size')->withTimestamps();
+      }
+
+      public function productImage(){
+        return $this->hasMany('App\Models\ProductImage');
+    }
+
+
+
+
 
 }

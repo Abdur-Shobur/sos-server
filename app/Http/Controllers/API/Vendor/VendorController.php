@@ -33,7 +33,7 @@ class VendorController extends Controller
          $data->name = $request->name;
          $data->number = $request->number;
          $data->status = $request->status;
-         
+
          if($request->hasFile('image'))
          {
              $file = $request->file('image');
@@ -90,9 +90,6 @@ class VendorController extends Controller
          $product->subcategory_id=$request->input('subcategory_id');
          $product->brand_id=$request->input('brand_id');
          $product->user_id=Auth::user()->id;
-        //  $product->color_id=json_encode($request->input('color_id'));
-        //  $product->size_id=json_encode($request->input('size_id'));
-        //  $product->slug=$request->input('slug');
          $product->name=$request->input('name');
          $product->slug =Str::slug($request->name);
          $product->short_description=$request->input('short_description');
@@ -104,7 +101,10 @@ class VendorController extends Controller
          $product->meta_title=$request->input('meta_title');
          $product->meta_keyword=$request->input('meta_keyword');
          $product->meta_description=$request->input('meta_description');
-         $product->tags=$request->input('tags');
+        //  $product->tags=$request->input('tags');
+         $product->specification      = json_encode($request->specification);
+         $product->specification_ans  = json_encode($request->specification_ans);
+         $product->tags  = json_encode($request->tags);
 
          if($request->hasFile('image'))
          {
@@ -115,6 +115,9 @@ class VendorController extends Controller
              $product->image = 'uploads/product/'.$filename;
          }
          $product->save();
+
+         $product->colors()->attach($request->colors);
+         $product->sizes()->attach($request->sizes);
 
          $productId=$product->id;
          $images = $request->file('image');
@@ -132,7 +135,7 @@ class VendorController extends Controller
               $proimage->save();
          }
 
-         
+
          return response()->json([
          'status'=>200,
           'message'=>'Product Added Sucessfully',
@@ -143,7 +146,7 @@ class VendorController extends Controller
     public function VendorProductEdit($id)
     {
         $userId =Auth::id();
-        $product = Product::with('category','subcategory')->where('user_id',$userId)->find($id);
+        $product = Product::with('category','subcategory','colors','sizes','productImage')->where('user_id',$userId)->find($id);
         if($product)
         {
           return response()->json([
@@ -209,7 +212,9 @@ class VendorController extends Controller
                 $product->product_color=$request->input('product_color');
                 $product->product_size=$request->input('product_size');
                 $product->tags=$request->input('tags');
-
+                $product->update();
+                $product->colors()->attach($request->colors);
+                $product->sizes()->attach($request->sizes);
 
 
                 if($request->hasFile('image'))

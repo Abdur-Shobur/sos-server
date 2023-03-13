@@ -80,8 +80,8 @@ Route::middleware(['auth:sanctum','isAPIVendor'])->group(function(){
     Route::get('edit-color/{id}',[ColorController::class,'ColorEdit']);
     Route::post('update-color/{id}', [ColorController::class, 'ColorUpdate']);
     Route::delete('delete-color/{id}', [ColorController::class, 'destroy']);
- 
- 
+
+
       //size route
       Route::post('store-size',[SizeController::class,'Sizestore']);
       Route::get('view-size',[SizeController::class,'SizeIndex']);
@@ -136,7 +136,7 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
    Route::delete('delete-brand/{id}', [BrandController::class, 'destroy']);
 
    //color route
- 
+
 
 
 
@@ -167,6 +167,9 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
 
 
 Route::middleware(['auth:sanctum'])->group(function(){
+
+  Route::get('affiliator/profile',[AffiliateController::class,'AffiliatorProfile']);
+   Route::post('affiliator/update/profile',[AffiliateController::class,'AffiliatorUpdateProfile']);
    Route::post('logout',[AuthController::class,'logout']);
    Route::get('affiliator/products', [AffiliateController::class, 'AffiliatorProducts']);
    Route::get('single/product/{id}', [AffiliateController::class, 'AffiliatorProductSingle']);

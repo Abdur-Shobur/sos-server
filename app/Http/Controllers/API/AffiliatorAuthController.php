@@ -73,7 +73,7 @@ class AffiliatorAuthController extends Controller
             if ($user->status !== 'active') {
                 return response()->json([
                     'status' => 401,
-                    'message' => 'User account is inactive',
+                    'message' => 'Affiliator account is inactive please contact Admin Panel',
                 ]);
             }
 

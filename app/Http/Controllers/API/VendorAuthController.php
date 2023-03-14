@@ -73,7 +73,7 @@ class VendorAuthController extends Controller
             if ($user->status !== 'active') {
                 return response()->json([
                     'status' => 401,
-                    'message' => 'User account is inactive',
+                    'message' => 'Vendor  account is inactive please Conatct Amdin Panel',
                 ]);
             }
 

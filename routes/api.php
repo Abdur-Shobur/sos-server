@@ -38,9 +38,6 @@ Route::post('vendor/login', [VendorAuthController::class, 'VendorLogin']);
 Route::post('affiliator/register', [AffiliatorAuthController::class, 'AffiliatorRegister']);
 Route::post('affiliator/login', [AffiliatorAuthController::class, 'AffiliatorLogin']);
 
-
-
-
 Route::post('register', [AuthController::class, 'Register']);
 Route::post('admin/login', [AuthController::class, 'Login']);
 
@@ -148,6 +145,8 @@ Route::delete('delete-subcategory/{id}', [SubCategoryController::class, 'destroy
     Route::get('edit-product/{id}',[ProductController::class,'ProductEdit']);
     Route::put('update-product/{id}', [ProductController::class, 'UpdateProduct']);
     Route::delete('delete-product/{id}', [ProductController::class, 'destroy']);
+
+    Route::get('product-approval/{id}', [ProductController::class, 'approval']);
 
 
     Route::get('vendor/view', [UserController::class, 'VendorView']);

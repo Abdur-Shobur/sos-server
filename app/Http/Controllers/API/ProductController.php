@@ -297,5 +297,27 @@ class ProductController extends Controller
     }
 
 
+    public function approval($id)
+    {
+        $product = Product::find($id);
+        if ($product->status == 'pending')
+        {
+            $product->status = 'active';
+            $product->save();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Product is active ',
+            ]);
+
+        }else
+        {
+            return response()->json([
+                'status' => 401,
+                'message' => 'Product is Pending',
+            ]);
+        }
+     }
+
+
 
 }

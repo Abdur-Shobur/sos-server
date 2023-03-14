@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2023 at 12:40 PM
+-- Generation Time: Mar 14, 2023 at 10:13 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -244,7 +244,16 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (39, 'App\\Models\\User', 10, 'v@gmail.com_VendorToken', 'a97c4de262a5395d85a05086ce207c152e3cc0a02e2b338146400af8d14da5f2', '[\"server:vendor\"]', '2023-03-11 01:06:54', NULL, '2023-03-11 01:06:53', '2023-03-11 01:06:54'),
 (45, 'App\\Models\\User', 1, 'admin@gmail.com_AdminToken', 'dfe720a4e8a6acf7c889cb6bae97f04a743921770a9e18f28219f89af070281b', '[\"server:admin\"]', '2023-03-12 01:02:44', NULL, '2023-03-12 00:39:31', '2023-03-12 01:02:44'),
 (46, 'App\\Models\\User', 3, 'vendor2@gmail.com_VendorToken', '60bc6b12eb41fbf5eaa30c7395563b917db941fad2340fd35d5d8964d6d12231', '[\"server:vendor\"]', '2023-03-12 22:33:15', NULL, '2023-03-12 05:05:51', '2023-03-12 22:33:15'),
-(47, 'App\\Models\\User', 2, 'vendor@gmail.com_VendorToken', '0ece5acf430289e5abe5cc5c8b0c8c8c8dbd85bb9105e2915ba223f3a5cb748b', '[\"server:vendor\"]', '2023-03-13 05:30:36', NULL, '2023-03-13 04:07:38', '2023-03-13 05:30:36');
+(47, 'App\\Models\\User', 2, 'vendor@gmail.com_VendorToken', '0ece5acf430289e5abe5cc5c8b0c8c8c8dbd85bb9105e2915ba223f3a5cb748b', '[\"server:vendor\"]', '2023-03-13 05:44:34', NULL, '2023-03-13 04:07:38', '2023-03-13 05:44:34'),
+(48, 'App\\Models\\User', 1, 'admin@gmail.com_AdminToken', '0285fd3500869dd529b632a3006f5b030bef2e846fbf7b9062b117eb1c8d8a8c', '[\"server:admin\"]', NULL, NULL, '2023-03-13 23:25:36', '2023-03-13 23:25:36'),
+(49, 'App\\Models\\User', 1, 'admin@gmail.com_AdminToken', '0c46f62741bb8f014842e5e00ecf48db81419d8fb255596245763a217604c005', '[\"server:admin\"]', NULL, NULL, '2023-03-13 23:39:36', '2023-03-13 23:39:36'),
+(50, 'App\\Models\\User', 7, 'afi@gmail.com_Token', '117256dd036c41972ea6138e970aefdce530002d752a86591c11b42207efa559', '[\"\"]', NULL, NULL, '2023-03-13 23:45:14', '2023-03-13 23:45:14'),
+(51, 'App\\Models\\User', 1, 'admin@gmail.com_AdminToken', 'd2b1d4ba18880997668fb62180951c7b5d8bd09edd00165c1547742b996305dd', '[\"server:admin\"]', '2023-03-14 00:06:39', NULL, '2023-03-13 23:58:13', '2023-03-14 00:06:39'),
+(52, 'App\\Models\\User', 1, 'admin@gmail.com_Token', '409a47e4f5862fdffdedd3b892e7d4b401b03c26bb59108d3a894de78b8f0abb', '[\"\"]', '2023-03-14 01:48:31', NULL, '2023-03-14 01:47:23', '2023-03-14 01:48:31'),
+(53, 'App\\Models\\User', 2, 'vendor@gmail.com_VendorToken', 'f1603f1513ad3ead24ce0fbd679c9427c867fc64c3c58dd220cd5f7d40a4c3cc', '[\"server:vendor\"]', NULL, NULL, '2023-03-14 01:50:08', '2023-03-14 01:50:08'),
+(54, 'App\\Models\\User', 1, 'admin@gmail.com_AdminToken', '06284ee883dbaaf2c8ac3a45f78640b0477f2dbab57c13b701a1e8c0a1032b2a', '[\"server:admin\"]', '2023-03-14 01:53:27', NULL, '2023-03-14 01:52:35', '2023-03-14 01:53:27'),
+(55, 'App\\Models\\User', 2, 'vendor@gmail.com_VendorToken', '1b574d29ab9698ae557c580f298c5a5ec12eb788a05933c34e5004fafc52ef89', '[\"server:vendor\"]', '2023-03-14 01:55:08', NULL, '2023-03-14 01:53:51', '2023-03-14 01:55:08'),
+(56, 'App\\Models\\User', 2, 'vendor@gmail.com_VendorToken', '1728854b25803fcf291918c184106636d62cf958179a9a3e54ebb4c5cb604e6e', '[\"server:vendor\"]', '2023-03-14 02:04:09', NULL, '2023-03-14 02:02:43', '2023-03-14 02:04:09');
 
 -- --------------------------------------------------------
 
@@ -286,7 +295,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `subcategory_id`, `brand_id`, `user_id`, `slug`, `name`, `short_description`, `long_description`, `selling_price`, `original_price`, `qty`, `image`, `status`, `meta_title`, `meta_keyword`, `meta_description`, `tags`, `commision_type`, `request`, `user_type`, `created_at`, `updated_at`, `deleted_at`, `specification`, `specification_ans`) VALUES
-(4, 1, 1, 1, 2, 'vendor-product', 'Vendor Product', 'dfdddd', 'dddddd', '12', '10', '20', 'uploads/product/1678702663.jpg', 'active', NULL, NULL, NULL, 'new,old', NULL, NULL, NULL, '2023-03-13 04:17:43', '2023-03-13 04:17:43', NULL, NULL, ''),
+(4, 1, 1, 1, 2, 'vendor-product', 'Vendor Product', 'dfdddd', 'dddddd', '12', '10', '20', 'uploads/product/1678702663.jpg', 'active', NULL, NULL, NULL, 'new,old', NULL, NULL, NULL, '2023-03-13 04:17:43', '2023-03-14 00:06:39', NULL, NULL, ''),
 (5, 1, 1, 1, 2, 'vendor-product-2', 'Vendor Product  2', 'dfdddd', 'dddddd', '12', '10', '20', NULL, 'active', NULL, NULL, NULL, 'new,old', NULL, NULL, NULL, '2023-03-13 04:21:26', '2023-03-13 04:21:26', NULL, '', ''),
 (6, 1, 1, 1, 2, 'vendor-product-3', 'Vendor Product  3', 'dfdddd', 'dddddd', '12', '10', '20', NULL, 'active', NULL, NULL, NULL, 'new,old', NULL, NULL, NULL, '2023-03-13 04:22:47', '2023-03-13 04:22:47', NULL, '[\"gg\"]', '[\"gg\"]');
 
@@ -434,12 +443,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role_as`, `image`, `number`, `status`, `balance`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'admin', 'admin@gmail.com', NULL, '1', NULL, NULL, 'active', NULL, '$2y$10$SRls1QAH1nf.J5LPaw6Sfu9.qt4wN6rkD20CwCYFoyuGf/qWCv9wa', NULL, '2023-03-06 06:29:48', '2023-03-06 06:29:48', NULL),
-(2, 'vendor pro', 'vendor@gmail.com', NULL, '2', 'uploads/vendor/1678085750.jpg', '1234566234', 'inActive', NULL, '$2y$10$SRls1QAH1nf.J5LPaw6Sfu9.qt4wN6rkD20CwCYFoyuGf/qWCv9wa', NULL, '2023-03-06 00:55:50', '2023-03-11 00:20:07', NULL),
+(2, 'vendor pro', 'vendor@gmail.com', NULL, '2', 'uploads/vendor/1678085750.jpg', '1234566234', 'active', NULL, '$2y$10$SRls1QAH1nf.J5LPaw6Sfu9.qt4wN6rkD20CwCYFoyuGf/qWCv9wa', NULL, '2023-03-06 00:55:50', '2023-03-11 00:20:07', NULL),
 (3, 'vendor2', 'vendor2@gmail.com', NULL, '2', 'uploads/vendor/1678089407.jpg', '32423424', 'active', NULL, '$2y$10$SRls1QAH1nf.J5LPaw6Sfu9.qt4wN6rkD20CwCYFoyuGf/qWCv9wa', NULL, '2023-03-06 01:56:47', '2023-03-11 00:36:45', NULL),
 (4, 'new name', 'new@gmail.com', NULL, '2', 'uploads/vendor/1678188936.png', '1234566', 'inActive', NULL, '$2y$10$.8kU78cckKQydvXPj.bHoeHOie0RHpxEYIVfHy/83Nt8fPwHkSC52', NULL, '2023-03-07 05:35:36', '2023-03-11 00:36:39', NULL),
-(5, 'new name', 'user@gmail.com', NULL, '3', 'uploads/vendor/1678188962.png', '32423424', 'active', NULL, '$2y$10$7QMZta6JUu2ZoTX2y5VrzeVcJnZ86Npm3.lI.lYUw43m/3bEMxN9S', NULL, '2023-03-07 05:36:02', '2023-03-07 05:36:02', NULL),
+(5, 'new name', 'user@gmail.com', NULL, '3', 'uploads/vendor/1678188962.png', '32423424', 'pending', NULL, '$2y$10$SRls1QAH1nf.J5LPaw6Sfu9.qt4wN6rkD20CwCYFoyuGf/qWCv9wa', NULL, '2023-03-07 05:36:02', '2023-03-07 05:36:02', NULL),
 (6, 'af', 'af@gmail.com', NULL, '3', 'uploads/vendor/1678189897.png', '321234', 'inActive', NULL, '$2y$10$JdrqUr14Y2be7QNmLRTcG.s4vgbX.z6vaBrx/3mAmnK5hamr3aUFi', NULL, '2023-03-07 05:51:37', '2023-03-11 00:46:47', NULL),
-(7, 'af', 'afi@gmail.com', NULL, '3', 'uploads/vendor/1678513528.jpg', '321234', 'active', NULL, '$2y$10$r3iYXeFJup/lGVDe21JlmuN3lWOwNS8BS.18mlu.mFan/Jth952cu', NULL, '2023-03-10 23:45:28', '2023-03-10 23:45:28', NULL),
+(7, 'af', 'afi@gmail.com', NULL, '3', 'uploads/vendor/1678513528.jpg', '321234', 'penfing', NULL, '$2y$10$SRls1QAH1nf.J5LPaw6Sfu9.qt4wN6rkD20CwCYFoyuGf/qWCv9wa', NULL, '2023-03-10 23:45:28', '2023-03-10 23:45:28', NULL),
 (8, 'afa', 'afa@gmail.com', NULL, '3', 'uploads/affiliator/1678516266.jpg', '01231321', 'inActive', NULL, '$2y$10$h0wfqQnl7FW33Fb42ZUige/WfhEvK82DQYuBRNUWy7yeqI3X9ym8K', NULL, '2023-03-11 00:25:55', '2023-03-11 00:31:06', NULL),
 (9, 'Abdur Shobur', 'a@gmail.com', NULL, '3', NULL, '01818321271', 'active', NULL, '$2y$10$pJgLutvMBkbq38Ag5n32a.iD4CYCndbMhTibqddeNMegIFUESM.re', NULL, '2023-03-11 01:00:20', '2023-03-11 01:01:56', NULL),
 (10, 'Abdur', 'v@gmail.com', NULL, '2', NULL, '01818321271', 'pending', NULL, '$2y$10$RpEvmZT5EySBko3Rfd00YOYIwMkD7zh.DjzpmNxamzfxxtFWWrS8e', NULL, '2023-03-11 01:06:47', '2023-03-11 01:06:47', NULL);
@@ -598,7 +607,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `products`

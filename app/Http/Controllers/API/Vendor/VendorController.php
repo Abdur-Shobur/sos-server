@@ -16,6 +16,7 @@ use App\Models\Color;
 use App\Models\Size;
 use App\Models\User;
 use App\Models\Subcategory;
+use Image;
 class VendorController extends Controller
 {
      public function VendorProfile()
@@ -109,7 +110,7 @@ class VendorController extends Controller
          if($request->hasFile('image'))
          {
              $file = $request->file('image');
-             $extension = $file->getClientOriginalExtension();
+             $extension = $file->getClientOriginalName();
              $filename = time() .'.'.$extension;
              $file->move('uploads/product/', $filename);
              $product->image = 'uploads/product/'.$filename;

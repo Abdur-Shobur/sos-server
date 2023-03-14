@@ -70,6 +70,13 @@ class AffiliatorAuthController extends Controller
                     'message'=>'Invalid Credentials',
                 ]);
             }
+            if ($user->status !== 'active') {
+                return response()->json([
+                    'status' => 401,
+                    'message' => 'User account is inactive',
+                ]);
+            }
+
             else
             {
                 if($user->role_as == 3) //1= Admin

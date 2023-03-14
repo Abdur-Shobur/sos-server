@@ -121,7 +121,7 @@ class VendorController extends Controller
          $product->sizes()->attach($request->sizes);
 
          $productId=$product->id;
-         $images = $request->file('image');
+         $images = $request->file('images');
          foreach($images as $image)
          {
             // image01 upload
